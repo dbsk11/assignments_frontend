@@ -18,7 +18,7 @@ const MainPage = (props) => {
             <button onClick={handleClickTeacher}>Teacher</button>
         </div>
     );
-    
+
 };
 
 export default MainPage;

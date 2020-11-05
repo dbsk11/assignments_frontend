@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react-router-dom'
 
 // MAIN COMPONENTS
 import Header from './headers/Header';
@@ -22,10 +21,26 @@ const App = () => {
   // Initialize History
   const history = useHistory();
 
+//TEACHER STATES:
+  //TEACHER LOGIN:
+  const [teacherUsername, setTeacherUsername] = useState("");
+  const [teacherPassword, setTeacherPassword] = useState("");
+
+
   // TEACHER
+  const handleTeacherLoginSubmit = (userInfo) => {
+
+  }
+
   const renderTeacherLogin = () => {
     return(
-      <TeacherLogin />
+      <TeacherLogin 
+        teacherUsername={teacherUsername}
+        teacherPassword={teacherPassword}
+        setTeacherUsername={setTeacherUsername}
+        setTeacherPassword={setTeacherPassword}
+        handleLoginSubmit={handleTeacherLoginSubmit}
+      />
     )
   }
 

@@ -7,17 +7,17 @@ const NavBarTeacher = (props) => {
             <NavLink
                 to="/teacher/"
                 exact
-                activeStyle={{color: 'yellow'}}
-            >Dashboard</NavLink>
+                activeStyle={{color: 'red'}}
+            >Assignments</NavLink>
             <NavLink
                 to="/teacher/profile"
                 exact
-                activeStyle={{color: 'yellow'}}
+                activeStyle={{color: 'red'}}
             >Profile</NavLink>
             <NavLink
                 to="/"
                 exact
-                activeStyle={{color: 'yellow'}}
+                activeStyle={{color: 'red'}}
             >Log Out</NavLink>
         </div>
     );

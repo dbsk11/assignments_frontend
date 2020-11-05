@@ -1,20 +1,53 @@
 import React from 'react';
 import './App.css';
+import { withRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useEffect, useState } from 'react-router-dom'
 
-import Header from './headers/Header'
-import MainPage from './headers/MainPage'
+// MAIN COMPONENTS
+import Header from './headers/Header';
+import MainPage from './headers/MainPage';
 
-import NavBarStudent from './headers/NavBarStudent'
-import NavBarTeacher from './headers/NavBarTeacher'
+// TEACHER COMPONENTS
+import NavBarTeacher from './headers/NavBarTeacher';
+import MainComponent from './components_teacher/MainComponent'
+import TeacherLogin from './components_teacher/TeacherLogin'
 
 
-function App() {
+// STUDENT COMPONENTS
+import StudentLogin from './components_student/StudentLogin'
+
+const App = () => {
+  // Initialize History
+  const history = useHistory();
+
+  // TEACHER
+  const renderTeacherLogin = () => {
+    return(
+      <TeacherLogin />
+    )
+  }
+
+
+  // RETURN
   return (
-    <div className="App">
+    <div className="maincontainer">
       <Header />
-      <MainPage />
+      <NavBarTeacher />
+
+      <Route exact path="/" render={() => <MainPage history={history} />} />
+
+      <Switch>
+        {/* TEACHER */}
+        <Route exact path="/teacher/login" render={() => renderTeacherLogin()} />
+
+        {/* STUDENT */}
+        {/* <Route exact path="/student/login" render={() => renderStudentLogin()}/> */}
+      </Switch>
     </div>
   );
-}
+};
 
-export default App;
+export default withRouter(App);
+

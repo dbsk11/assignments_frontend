@@ -5,7 +5,7 @@ const NavBarTeacher = (props) => {
     return (
         <div className="navbar">
             <NavLink
-                to="/teacher/"
+                to="/teacher/assignments"
                 exact
                 activeStyle={{color: 'red'}}
             >Assignments</NavLink>

@@ -12,6 +12,7 @@ import MainPage from './headers/MainPage';
 import NavBarTeacher from './headers/NavBarTeacher';
 import MainComponent from './components_teacher/MainComponent'
 import TeacherLogin from './components_teacher/TeacherLogin'
+import Profile from './components_teacher/Profile'
 
 
 // STUDENT COMPONENTS
@@ -29,9 +30,37 @@ const App = () => {
 
   // TEACHER
   const handleTeacherLoginSubmit = (userInfo) => {
+    fetch("http://localhost:3000/teachers/login", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+      body: JSON.stringify(userInfo)
+    })
+    .then(r => r.json())
+    .then((data) => {
+      console.log(data)
+    });
+  };
 
-  }
+  // TEACHER ASSIGNMENTS
+  const renderTeacherAssignments = () => {
+    return (
+      <MainComponent 
+      />
+    );
+  };
 
+  // TEACHER PROFILE
+  const renderTeacherProfile = () => {
+    return (
+      <Profile 
+      />
+    );
+  };
+
+  // TEACHER LOGIN
   const renderTeacherLogin = () => {
     return(
       <TeacherLogin 
@@ -41,9 +70,8 @@ const App = () => {
         setTeacherPassword={setTeacherPassword}
         handleLoginSubmit={handleTeacherLoginSubmit}
       />
-    )
-  }
-
+    );
+  };
 
   // RETURN
   return (
@@ -56,6 +84,8 @@ const App = () => {
       <Switch>
         {/* TEACHER */}
         <Route exact path="/teacher/login" render={() => renderTeacherLogin()} />
+        <Route exact path="/teacher/assignments" render={() => renderTeacherAssignments()} />
+        <Route exact path="/teacher/profile" render={() => renderTeacherProfile()} />
 
         {/* STUDENT */}
         {/* <Route exact path="/student/login" render={() => renderStudentLogin()}/> */}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const TeacherLogin = (props) => {
 
@@ -8,7 +8,7 @@ const TeacherLogin = (props) => {
             username: evt.target.username.value,
             password: evt.target.password.value
         }
-        props.handleTeacherLoginSubmit(user)
+        props.handleLoginSubmit(user)
     }
 
     return(

@@ -27,27 +27,73 @@ const App = () => {
   const [teacherUsername, setTeacherUsername] = useState("");
   const [teacherPassword, setTeacherPassword] = useState("");
 
+  // TEACHER ID
+  const [teacherId, setTeacherId] = useState("");
 
-  // TEACHER
-  const handleTeacherLoginSubmit = (userInfo) => {
-    fetch("http://localhost:3000/teachers/login", {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-      },
-      body: JSON.stringify(userInfo)
-    })
-    .then(r => r.json())
-    .then((data) => {
-      console.log(data)
-    });
-  };
+  // TEACHER ASSIGNMENTS
+  const [teacherAssignments, setTeacherAssignments] = useState("");
+
+  // TEACHER CLASSES
+  const [klass, setKlass] = useState("");
+
+  // SETTING TEACHER USER
+  const [teacherUser, setTeacherUser] = useState({
+    teacherUser: {
+      id: 0,
+      first_name: "",
+      last_name: "",
+      subject: "", 
+      email: "",
+      username: "",
+      display_name: "",
+      teacher_klasses: [],
+      assignments: []
+    },
+    token: ""
+  });
+
+  // TEACHER LOGIN
+  // const handleTeacherLoginSubmit = (userInfo) => {
+  //   fetch("http://localhost:3000/teachers/login", {
+  //     method: "POST",
+  //     headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json"
+  //     },
+  //     body: JSON.stringify(userInfo)
+  //   })
+  //   .then(r => r.json())
+  //   .then((data) => {
+  //     console.log(data)
+  //     setTeacherId(data.teacher.id)
+  //     handleTeacherResponse(data)
+  //   });
+  // };
+
+  const handleTeacherLoginSubmit = (resp) => {
+    setTeacherId(1)
+    history.push("/teacher/assignments")
+  }
+
+  //TEACHER RESPONSE
+  // const handleTeacherResponse = (resp) => {
+  //   if(resp.teacher){
+  //     localStorage.token = resp.token
+  //     setTeacherUser(resp)
+  //     history.push("/teacher/assignments")
+  //   } else {
+  //     alert(resp.error)
+  //   };
+  // };
 
   // TEACHER ASSIGNMENTS
   const renderTeacherAssignments = () => {
     return (
       <MainComponent 
+        teacherId={teacherId}
+        setKlass={setKlass}
+        setTeacherAssignments={setTeacherAssignments}
+        history={history}
       />
     );
   };
@@ -56,22 +102,35 @@ const App = () => {
   const renderTeacherProfile = () => {
     return (
       <Profile 
+        history={history}
       />
     );
   };
 
   // TEACHER LOGIN
-  const renderTeacherLogin = () => {
-    return(
-      <TeacherLogin 
-        teacherUsername={teacherUsername}
-        teacherPassword={teacherPassword}
-        setTeacherUsername={setTeacherUsername}
-        setTeacherPassword={setTeacherPassword}
-        handleLoginSubmit={handleTeacherLoginSubmit}
-      />
-    );
-  };
+  // const renderTeacherLogin = () => {
+  //   return(
+  //     <TeacherLogin 
+  //       teacherUsername={teacherUsername}
+  //       teacherPassword={teacherPassword}
+  //       setTeacherUsername={setTeacherUsername}
+  //       setTeacherPassword={setTeacherPassword}
+  //       handleLoginSubmit={handleTeacherLoginSubmit}
+  //     />
+  //   );
+  // };
+    const renderTeacherLogin = () => {
+      return (
+        <TeacherLogin 
+          teacherUsername={teacherUsername}
+          teacherPassword={teacherPassword}
+          setTeacherUsername={setTeacherUsername}
+          setTeacherPassword={setTeacherPassword}
+          handleLoginSubmit={handleTeacherLoginSubmit}
+          history={history}
+        />
+      )
+    }
 
   // RETURN
   return (
